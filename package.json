@@ -9,7 +9,14 @@
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "build:osx": "electron-builder --mac",
+    "build:linux": "npm run build:linux32 && npm run build:linux64",
+    "build:linux32": "electron-builder --linux --ia32",
+    "build:linux64": "electron-builder --linux --x64",
+    "build:win": "npm run build:win32 && npm run build:win64",
+    "build:win32": "electron-builder --win --ia32",
+    "build:win64": "electron-builder --win --x64"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.63",
@@ -17,9 +24,12 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.63",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
     "@electron-forge/maker-zip": "^6.0.0-beta.63",
-    "electron": "^17.1.2"
+    "electron": "^17.1.2",
+    "electron-builder": "^22.14.13",
+    "electron-packager": "^15.4.0"
   },
   "dependencies": {
+    "asar": "^3.1.0",
     "electron-squirrel-startup": "^1.0.0"
   },
   "config": {
@@ -47,6 +57,42 @@
           "config": {}
         }
       ]
+    }
+  },
+  "build": {
+    "productName": "MyTestApp",
+    "appId": "com.builder.pro",
+    "asar": true,
+    "protocols" : {
+        "name" : "MyTestApp",
+        "schemes" : ["MyTestApp"]
+    },
+    "mac": {
+        "target": [ "default" ]
+    },
+
+    "dmg": {
+        "title": "MyTestApp"
+    },
+
+    "win": {
+        "target": [ "zip", "nsis" ]
+    },
+
+    "linux": {
+        "target": [ "AppImage", "deb", "rpm", "zip", "tar.gz" ],
+        "maintainer": "이름 <이메일주소>"
+    },
+
+    "nsis":{
+        "oneClick" : false,
+        "allowToChangeInstallationDirectory" :true
+    },
+
+    "directories": {
+        "buildResources": "resources/installer/",
+        "output": "dist/",
+        "app": "."
     }
   }
 }

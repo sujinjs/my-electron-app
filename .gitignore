@@ -2,3 +2,5 @@ node_modules
 out
 *.lock
 .DS_STORE
+dist
+*lock.json
