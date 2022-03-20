@@ -4,3 +4,4 @@ out
 .DS_STORE
 dist
 *lock.json
+target

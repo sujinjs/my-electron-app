@@ -10,6 +10,9 @@ const createWindow = () => {
     width: 1200,
     height: 900,
     webPreferences: {
+      webSecurity: false,
+      // allowDisplayingInsecureContent: true,
+      // allowRunningInsecureContent: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
