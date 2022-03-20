@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "hello electron!!",
   "main": "main.js",
-  "repository": "https://github.com/sujinjs/my-electron-app.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sujinjs/my-electron-app.git"
+  },
   "author": "sj",
   "license": "MIT",
   "scripts": {
