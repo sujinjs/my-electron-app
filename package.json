@@ -1,6 +1,6 @@
 {
   "name": "my-electron-app",
-  "version": "1.0.1",
+  "version": "1.0.8",
   "description": "hello electron!!",
   "main": "main.js",
   "author": "sj",
@@ -11,16 +11,32 @@
   },
   "build": {
     "appId": "com.example.app",
-    "productName": "MyTestApp"
+    "productName": "MyTestApp",
+    "win": {
+      "target": "nsis"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "sujinjs",
+        "repo": "my-electron-app"
+      }
+    ]
   },
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "pack": "electron-builder",
+    "dist": "electron-builder build --win --x64 --publish never",
+    "deploy": "electron-builder build --win --x64 --publish always",
+    "publish": "electron-builder -p always"
   },
   "devDependencies": {
     "electron": "^17.1.0",
-    "electron-builder": "^22.14.13",
+    "electron-builder": "^22.14.13"
+  },
+  "dependencies": {
+    "asar": "^3.1.0",
+    "electron-log": "^4.4.6",
     "electron-updater": "^4.6.5"
   }
 }
